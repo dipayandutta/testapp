@@ -1,0 +1,63 @@
+Chef Server Installation on 16.04
+
+Check the NTP Status
+==============================
+
+ $ sudo systemctl status ntp
+
+
+Download the chef package
+===============================
+$ wget  https://packages.chef.io/files/stable/chef-server/12.15.6/ubuntu/16.04/chef-server-core_12.15.6-1_amd64.deb
+
+Install the chef package
+===============================
+
+$ sudo dpkg -g chef-server-*.deb
+
+Reconfigure the chef-server
+============================
+
+$ sudo chef-server-ctl reconfigure
+
+
+Install the Chef manage
+=======================--
+
+$ sudo chef-server-ctl install chef-manage
+
+                OR
+                
+$ sudo wget https://packages.chef.io/files/stable/chef-manage/2.5.8/ubuntu/16.04/chef-manage_2.5.8-1_amd64.deb
+
+
+$ sudo dpkg -i chef-manage_*.deb
+
+Reconfigure the Chef Server again
+======================================
+
+$ sudo chef-server-ctl reconfigure
+
+$ sudo chef-manage-ctl reconfigure
+
+$ sudo chef-manage-ctl reconfigure --accept-license
+
+
+Chef configuration yser and Organization Creation
+===================================================
+
+mkdir ~/.chef
+
+
+$ sudo chef-server-ctl user-create admin Chef Administrator chef@youdomain.com password -f ~/.chef/admin.pem
+
+$ sudo chef-server-ctl org-create my_org 'My Organisation' --association_user admin -f ~/.chef/my_org.pem
+
+
+Check the Server
+====================
+Open the broweser with IP address and https://
+
+
+
+https://jee-appy.blogspot.in/2016/08/setup-chef-server-and-chef-workstation.html
